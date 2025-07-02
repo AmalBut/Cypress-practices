@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .title{
+            color: red;
+        }
+        #para1 {
+            background-color: gray;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 class = "title"> Hello world </h1>
+        <p id ="para1"> Hello this is para </p>
+        <label>
+            <p>bhbh</p>
+        </label>
+        <a href="https://www.google.com/" class="link"> this is link </a>
+        <input type="text" > 
+    </div>
+    <p id="p2"> mkf</p>
+</body>
+
+cy.get("div > p")  // #para1
+cy.get("div p")  // #para1 , p 
+cy.get("div + p")  // #p2 
+
+</html>
