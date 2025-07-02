@@ -1,5 +1,8 @@
 /// <reference types="cypress" />
 describe('Actions lesson', () => {
+    before(()=>{
+            cy.log("This is before hook")
+    })
 
     beforeEach(() => {
         cy.visit("http://127.0.0.1:5500/actionsLesson.html")
@@ -74,5 +77,14 @@ describe('Actions lesson', () => {
         cy.get("#btn1").trigger("mousedown") //onmousedown should be setfor the element in javascript
 
     });
+
+       after(()=>{
+        cy.log("this is after")
+    })
+
+    afterEach(()=>{
+        cy.log("this is afterEach")
+    })
+
   
 });

@@ -12,9 +12,9 @@ describe('Delete product from cart', () => {
         cy.get("#product-addtocart-button").click()
         cy.wait(5000)
     })
-    it('Validate the user can delete product from shopping cart page', () => {
+   /* it('Validate the user can delete product from shopping cart page', () => {
         
-    });
+    });*/
 
     
     it.only('Validate the user can delete product from shopping cart dialog', () => {
