@@ -1,3 +1,4 @@
+/// <reference types="cypress" />
 import { Given, Then, When } from "cypress-cucumber-preprocessor/steps";
 
 Given('The user navigated to login page',()=>{
