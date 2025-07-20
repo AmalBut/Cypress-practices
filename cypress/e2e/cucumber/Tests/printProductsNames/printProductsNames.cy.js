@@ -14,7 +14,6 @@ Then("The products should be available in Hot Seller section",()=>{
             cy.wrap($products[i]).invoke("text").then((productName)=>{
                 cy.log(productName)
             })
-
         }
     })
 })
