@@ -2,9 +2,7 @@
 
 describe('Check Add Product to Cart', () => {
     before(() => {
-        const email = "CypressUser@gmail.com"
-        const password = "test@123"
-        cy.loginToMagento(email,password)
+        cy.loginToMagento()
     })
     it('Verify that adding product to cart is successful', () => {
         cy.visit("/")

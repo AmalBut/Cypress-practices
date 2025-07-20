@@ -7,7 +7,7 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     baseUrl:"https://magento.softwaretestingboard.com",
-    specPattern: "**/*.feature",
+    specPattern: "**/*.{feature,cy.js}",
     //viewportHeight:550,
     //viewportWidth:550,
     //watchForFileChanges:false,
