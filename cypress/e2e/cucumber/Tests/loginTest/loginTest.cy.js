@@ -1,41 +1,60 @@
 /// <reference types="cypress" />
-import { Given, Then, When } from "cypress-cucumber-preprocessor/steps";
+import { Before, Given, Then, When } from "cypress-cucumber-preprocessor/steps";
+import loginTestActions from "../../../../support/PageObjects/loginTest/Actions.cy";
+import loginTestAssertions from "../../../../support/PageObjects/loginTest/Assertions.cy";
+import sharedAssetions from "../../../../support/PageObjects/shared/Assertions.cy";
+
+const loginAction = new loginTestActions();
+const sharedAssertion = new sharedAssetions();
+const loginAssertion = new loginTestAssertions();
+/*Before({tags:'@TC-001'},()=>{
+    cy.log("This is @TC-001 tag")
+})
+
+Before({tags:'@TC or @Testcase'},()=>{
+    cy.log("These are @TC or @Testcase tags")
+})
+
+Before({tags:'@TC and @TC00-3'},()=>{
+    cy.log("These are @TC and @TC-003 tags")
+})
+*/
 
 Given('The user navigated to login page',()=>{
-    cy.visit("/customer/account/login/") 
+    loginAction.openLoginPage();
 })
 
 When('Types email in email input field',()=>{
-    cy.get("#email").type("CypressUser@gmail.com")
+    loginAction.typeEmailInEmailInputField("CypressUser@gmail.com");
 })
 
 When('Types wrong email in email input field',()=>{
-    cy.get("#email").type("CypressUser@gmail123.com")
+    loginAction.typeEmailInEmailInputField("CypressUser@gmail123.com");
 })
 
 When('Types password in password input field',()=>{
-    cy.get("#pass").type("test@123")
+    loginAction.typePasswordInPasswordInputField("test@123");
 })
 
 When('Types wrong password in password input field',()=>{
-    cy.get("#pass").type("test123@123")
+    loginAction.typePasswordInPasswordInputField("test123@123");
 })
 
 When('Clicks on login button',()=>{
-    cy.get("#send2").click()
+    loginAction.clickOnLoginButton();
 })
 
 Then('The user will be redirected to My Account page',()=>{
-    cy.url().should("eq","https://magento.softwaretestingboard.com/customer/account/")
+    sharedAssertion.checkCurrentURLIsContain("https://magento.softwaretestingboard.com/customer/account/");
 })
 
 Then('{string} message should shown and be visible',(message)=>{
-    cy.get('[role=alert]').should("contain", message).and("be.visible")
+    sharedAssertion.checkMessageBarIsVisible().checkMessageBarIsContain(message);  //chaining
 })
-// Then('{string} should be visible',(title)=>{
-//     cy.wait(2000)
-//     cy.get(".page-title").should("contain",title)
-// })
+
+/*Then('{string} should be visible',(title)=>{
+    sharedAssertion.checkPageTitleIsConatain(title);
+})*/
 
 // Then('{string} should be visible',(welcome)=>{
 //     cy.get("span.logged-in").first().should("contain",welcome)
@@ -57,12 +76,10 @@ Then('{string} message should shown and be visible',(message)=>{
 Then('{string} should be visible',(text)=>{
     switch(text){
     case "My Account": 
-       cy.get(".page-title").should("contain",text) 
+      sharedAssertion.checkPageTitleIsConatain(text);
        break;
-    
     case"Welcome": 
-        cy.wait(2000)
-        cy.get("span.logged-in").first().should("contain",text).and("be.visible")
+       loginAssertion.checkWelcomeIsVisible(text);
         break;
     default:
         throw new Error('No selector defined for "${text}"')
@@ -71,9 +88,9 @@ Then('{string} should be visible',(text)=>{
 
 //for scenario outline steps
 When('Types {word} in email input field',(email)=>{
-    cy.get("#email").type(email)
+    loginAction.typeEmailInEmailInputField(email)
 })
 
 When('Types {word} in password input field',(password)=>{
-    cy.get("#pass").type(password)
+    loginAction.typePasswordInPasswordInputField(password)
 })

@@ -1,5 +1,6 @@
 Feature: Login fuctionality
 
+    @TC-001 @TC
     Scenario: Validate that the user can login to magento page
         Given The user navigated to login page
         When Types email in email input field
@@ -9,7 +10,7 @@ Feature: Login fuctionality
         And "My Account" should be visible
         And "Welcome" should be visible
     
- 
+    @TC-002 @Testcase
     Scenario: Validate that the user cannot login to magento
         Given The user navigated to login page
         When Types wrong email in email input field
@@ -17,7 +18,7 @@ Feature: Login fuctionality
         And Clicks on login button
         Then "The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later." message should shown and be visible
 
-    @focus
+   @TC00-3 @TC 
     Scenario Outline: check login functionality
         Given The user navigated to login page
         When Types <email> in email input field

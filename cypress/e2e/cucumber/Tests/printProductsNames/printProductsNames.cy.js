@@ -1,19 +1,14 @@
 /// <reference types="cypress" />
 import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
+import sharedActions from "../../../../support/PageObjects/shared/Actions.cy";
+import printProductAssertions from "../../../../support/PageObjects/printProductsNames/Assertions.cy";
+const sharedAction = new sharedActions();
+const printProductAssertion = new printProductAssertions();
 
 Given("The user navigated to magento website",()=>{
-    cy.visit("/");
+    sharedAction.visitHomePage();
 })
 
 Then("The products should be available in Hot Seller section",()=>{
-    cy.log( cy.get(".product-item-link"))
-    //const name = $products.text()
-    //cy.log(name)
-    cy.get(".product-item-link").then(($products)=>{
-        for (let i = 0; i < $products.length; i++) {
-            cy.wrap($products[i]).invoke("text").then((productName)=>{
-                cy.log(productName)
-            })
-        }
-    })
+    printProductAssertion.printProducts();
 })
